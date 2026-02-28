@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Stripe Integration</title>
+    <script>
+        async function testStripeAPI() {
+            const output = document.getElementById('output');
+            output.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        amount: 2000, // $20.00 in cents
+                        product_name: 'In Me Not On Me - Bump J',
+                        success_url: window.location.origin + '/?success=true',
+                        cancel_url: window.location.origin + '/?cancelled=true'
+                    }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    output.innerHTML = `
+                        <h3>✅ SUCCESS!</h3>
+                        <p><strong>Stripe Checkout URL:</strong><br>
+                        <a href="${data.url}" target="_blank" style="color: #0057FF; word-break: break-all;">${data.url}</a></p>
+                        <p><strong>Session ID:</strong> ${data.session_id}</p>
+                        <button onclick="window.open('${data.url}', '_blank')" 
+                                style="background: #0057FF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+                            Open Stripe Checkout
+                        </button>
+                    `;
+                } else {
+                    const error = await response.text();
+                    output.innerHTML = `
+                        <h3>❌ ERROR</h3>
+                        <p><strong>Status:</strong> ${response.status}</p>
+                        <p><strong>Response:</strong><br><pre>${error}</pre></p>
+                    `;
+                }
+            } catch (error) {
+                output.innerHTML = `
+                    <h3>❌ NETWORK ERROR</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+
+        function testCustomAmounts() {
+            const amounts = [500, 1000, 2000, 5000, 10000]; // $5, $10, $20, $50, $100
+            const output = document.getElementById('custom-output');
+            output.innerHTML = 'Testing custom amounts...<br>';
+            
+            amounts.forEach(async (amount) => {
+                try {
+                    const response = await fetch('/api/create-checkout-session', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            amount: amount,
+                            product_name: 'In Me Not On Me - Bump J',
+                            success_url: window.location.origin + '/?success=true',
+                            cancel_url: window.location.origin + '/?cancelled=true'
+                        }),
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        output.innerHTML += `✅ $${amount/100}: <a href="${data.url}" target="_blank">Checkout Link</a><br>`;
+                    } else {
+                        output.innerHTML += `❌ $${amount/100}: Error ${response.status}<br>`;
+                    }
+                } catch (error) {
+                    output.innerHTML += `❌ $${amount/100}: ${error.message}<br>`;
+                }
+            });
+        }
+    </script>
+    <style>
+        body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        button { background: #333; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; margin: 10px 5px; }
+        button:hover { background: #555; }
+        pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+        .output { border: 1px solid #ddd; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        h1 { color: #333; }
+        a { color: #0057FF; }
+    </style>
+</head>
+<body>
+    <h1>🎵 BKN Music - Stripe Integration Test</h1>
+    
+    <h2>Quick Test - $20.00 Checkout</h2>
+    <button onclick="testStripeAPI()">Test Stripe API ($20.00)</button>
+    <div id="output" class="output">Click the button above to test the Stripe integration</div>
+
+    <h2>Custom Amount Testing</h2>
+    <button onclick="testCustomAmounts()">Test Multiple Custom Amounts</button>
+    <div id="custom-output" class="output">Click the button above to test custom amounts ($5, $10, $20, $50, $100)</div>
+
+    <h2>Main Site</h2>
+    <p><a href="/">← Back to BKN Music Store</a></p>
+    
+    <h2>Integration Status</h2>
+    <ul>
+        <li>✅ Vercel Deployment: Live</li>
+        <li>✅ Serverless Functions: Enabled</li>
+        <li>✅ Environment Variables: Configured</li>
+        <li>🔄 Stripe Integration: Testing...</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "bkn-music-store",
+  "version": "1.0.0",
+  "description": "BKN Music - Direct from Artist Store with Stripe Integration",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site ready'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "stripe": "^14.15.0"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.1"
+  },
+  "keywords": [
+    "music",
+    "store",
+    "stripe",
+    "payments",
+    "independent"
+  ],
+  "author": "BKN Music",
+  "license": "MIT"
+}

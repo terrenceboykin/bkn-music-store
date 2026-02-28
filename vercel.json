@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/create-checkout-session.js": {
+      "maxDuration": 10
+    },
+    "api/webhook.js": {
+      "maxDuration": 10
+    }
+  },
+  "buildCommand": "echo 'No build needed for static site'",
+  "outputDirectory": ".",
+  "installCommand": "npm install"
+}
