@@ -214,6 +214,92 @@ body {
   padding: 0.3rem 0.7rem;
 }
 
+/* Free Video Section */
+.free-video-section {
+  padding: 2rem 2.5rem;
+  border-bottom: 1px solid rgba(196,162,101,0.1);
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.video-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.video-subtitle {
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  font-style: italic;
+}
+
+.video-container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+  border: 2px solid rgba(196,162,101,0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.video-placeholder:hover {
+  border-color: var(--gold);
+}
+
+.placeholder-content {
+  text-align: center;
+  color: var(--white);
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(196,162,101,0.4);
+}
+
+.placeholder-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+}
+
+.placeholder-subtitle {
+  font-size: 0.9rem;
+  color: var(--gray-light);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .free-video-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .video-title {
+    font-size: 1.5rem;
+  }
+  
+  .play-icon {
+    font-size: 2.5rem;
+  }
+}
+
 /* Purchase section */
 .purchase {
   padding: 2.5rem;
@@ -626,6 +712,23 @@ body {
         <span class="format-badge">MP3 320kbps</span>
         <span class="format-badge">WAV Lossless</span>
         <span class="format-badge">Instant Download</span>
+      </div>
+    </div>
+    
+    <!-- Free Video Section -->
+    <div class="free-video-section">
+      <div class="video-header">
+        <h3 class="video-title">Watch Free</h3>
+        <p class="video-subtitle">Experience the music</p>
+      </div>
+      <div class="video-container">
+        <div class="video-placeholder">
+          <div class="placeholder-content">
+            <div class="play-icon">▶</div>
+            <p class="placeholder-text">In Me Not On Me - Official Video</p>
+            <p class="placeholder-subtitle">Loading...</p>
+          </div>
+        </div>
       </div>
     </div>
     
