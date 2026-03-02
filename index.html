@@ -244,46 +244,23 @@ body {
   position: relative;
 }
 
-.video-placeholder {
+.music-video {
   width: 100%;
-  aspect-ratio: 16/9;
-  background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
-  border: 2px solid rgba(196,162,101,0.2);
+  height: auto;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  background: var(--black);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  border: 2px solid rgba(196,162,101,0.2);
   transition: border-color 0.3s;
 }
 
-.video-placeholder:hover {
+.music-video:hover {
   border-color: var(--gold);
 }
 
-.placeholder-content {
-  text-align: center;
-  color: var(--white);
-}
-
-.play-icon {
-  font-size: 3rem;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 20px rgba(196,162,101,0.4);
-}
-
-.placeholder-text {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--white);
-}
-
-.placeholder-subtitle {
-  font-size: 0.9rem;
-  color: var(--gray-light);
-  font-style: italic;
+.music-video:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
 }
 
 @media (max-width: 768px) {
@@ -722,13 +699,11 @@ body {
         <p class="video-subtitle">Experience the music</p>
       </div>
       <div class="video-container">
-        <div class="video-placeholder">
-          <div class="placeholder-content">
-            <div class="play-icon">▶</div>
-            <p class="placeholder-text">In Me Not On Me - Official Video</p>
-            <p class="placeholder-subtitle">Loading...</p>
-          </div>
-        </div>
+        <video controls class="music-video" poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMzOCIgdmlld0JveD0iMCAwIDYwMCAzMzgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iMzM4IiBmaWxsPSIjMEEwQTBBIi8+Cjx0ZXh0IHg9IjMwMCIgeT0iMTU5IiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNDNEEyNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkluIE1lIE5vdCBPbiBNZSAtIEJ1bXAgSjwvdGV4dD4KPHR4dCB4PSIzMDAiIHk9IjE4NSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM2QjY1NjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkNsaWNrIHRvIHdhdGNoIGZyZWU8L3RleHQ+Cjwvc3ZnPg==">
+          <source src="in_me_not_on_me_web.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          <p style="color: var(--gold); text-align: center; padding: 2rem;">Video format not supported by your browser.</p>
+        </video>
       </div>
     </div>
     
